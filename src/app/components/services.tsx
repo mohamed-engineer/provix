@@ -28,7 +28,7 @@ export default function Services() {
   return (
     <section
       id="services"
-      className="relative py-24 bg-gradient-to-br from-cyan-500 via-blue-600 to-purple-700 text-white overflow-hidden"
+      className="relative py-24 bg-gradient-to-br bg-gray-950 text-white overflow-hidden"
     >
       <div className="max-w-6xl mx-auto px-6">
         <Reveal>

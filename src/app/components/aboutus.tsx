@@ -7,7 +7,7 @@ export default function AboutUs() {
   return (
     <section
       id="about"
-      className="relative py-24 bg-gradient-to-br from-purple-700 via-blue-600 to-cyan-500 text-white overflow-hidden"
+      className="relative py-24 bg-gray-900 text-white overflow-hidden"
     >
       {/* Pulse animation on rocket */}
       <motion.div
