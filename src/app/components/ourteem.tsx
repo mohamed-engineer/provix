@@ -6,7 +6,7 @@ import TeamMemberCard from "./teamMemberCard";
   {
     name: "Mohamed Hossam",
     role: "Founder & CEO & Software Manager",
-    photo: "/team/khaled.jpg",
+    photo: "/avatar.webp",
     bio: "Visionary leader driving innovation and growth with a strong background in software management and strategic planning.",
   },
   {

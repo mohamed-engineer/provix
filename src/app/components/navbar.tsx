@@ -26,7 +26,7 @@ export default function Navbar() {
         {/* Logo on the left */}
         <Link href="/">
           <Image
-            src={"/logonav.png"}
+            src={"/logo.png"}
             height={100}
             width={100}
             alt="Logo for navbar"
@@ -100,7 +100,7 @@ export default function Navbar() {
           {/* Login Button */}
           <Link href="/login" className="hidden lg:block">
             <span
-              className="relative inline-block text-center bg-gradient-to-br bg-gradient-to-tr from-gray-950 to-gray-800 text-white font-semibold rounded-3xl p-2 hover:from-blue-800 hover:to-fuchsia-900 transition duration-200"
+              className="relative inline-block text-center bg-black border-white border-2 text-white font-semibold rounded-3xl p-2 hover:from-blue-800 hover:to-fuchsia-900 transition duration-200"
               style={{ width: "100px" }}
             >
               Login
