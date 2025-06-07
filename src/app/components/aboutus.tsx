@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { FaRocket } from "react-icons/fa";
 import Reveal from "./reveal";
 export default function AboutUs() {
