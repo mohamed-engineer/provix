@@ -22,6 +22,6 @@
 body {
   @apply bg-gradient-to-br from-[#1E88E5] to-[#00BCD4] text-white;
   color: var(--foreground);
-  font-family: "Tajawal", sans-serif;
+  font-family: "Cairo", sans-serif;
 }
 

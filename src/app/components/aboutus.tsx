@@ -1,0 +1,85 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import Reveal from "./reveal";
+import { FaProjectDiagram, FaUsers, FaClock } from "react-icons/fa";
+import { useCountUp } from "./countup";
+
+export default function AboutUs() {
+  const stats = [
+    { label: "عدد المشاريع", value: 150, icon: <FaProjectDiagram /> },
+    { label: "عدد العملاء", value: 2000, icon: <FaUsers /> },
+    { label: "سنوات الخبرة", value: 8, icon: <FaClock /> },
+  ];
+
+  const [startCount, setStartCount] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => setStartCount(entry.isIntersecting),
+      { threshold: 0.5 }
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  const countProjects = useCountUp(150, startCount);
+  const countClients = useCountUp(2000, startCount);
+  const countYears = useCountUp(8, startCount);
+
+  const counts = [countProjects, countClients, countYears];
+
+  return (
+    <section
+      ref={sectionRef}
+      id="about"
+      className="py-24 text-center bg-gradient-to-br from-purple-600 via-blue-500 to-cyan-400 text-white transition-colors duration-500"
+    >
+      <div className="max-w-6xl mx-auto px-6">
+        <Reveal>
+          <h2 className="text-4xl text-white font-extrabold mb-3 relative inline-block">
+            من نحن
+            <span className="block mt-2 mx-auto h-1 w-24 rounded bg-cyan-400"></span>
+          </h2>
+        </Reveal>
+
+        <Reveal>
+          <p className="max-w-3xl mx-auto mb-16 text-lg sm:text-xl font-light leading-relaxed text-white">
+            نحن في SRVS نقدم حلولاً تقنية متكاملة تشمل تصميم المواقع، تطوير البرمجيات، وخدمات
+            الجرافيك ديزاين، لنساعد شركتك على النجاح والتميز في العالم الرقمي.
+          </p>
+        </Reveal>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
+          {stats.map(({ label, icon, value }, idx) => {
+            const count = counts[idx];
+            const isComplete = count === value;
+
+            return (
+              <Reveal key={idx}>
+                <div
+                  className="relative rounded-3xl p-8 shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer 
+                  before:absolute before:-top-5 before:left-1/2 before:-translate-x-1/2 before:w-14 before:h-1 before:rounded-full before:bg-cyan-400 
+                  bg-white/10 backdrop-blur-md text-white/90 flex flex-col items-center border border-white/10 hover:border-white/20"
+                >
+                  <div className="mb-4 text-6xl text-cyan-300">{icon}</div>
+                  <div
+                    className={`mb-4 text-5xl font-extrabold transition-all duration-300 ${
+                      isComplete ? "animate-bounce text-purple-300" : ""
+                    }`}
+                  >
+                    {label.includes("سنوات") ? `${count} سنوات` : `${count}+`}
+                  </div>
+                  <div className="text-xl font-semibold text-white/90">
+                    {label}
+                  </div>
+                </div>
+              </Reveal>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
