@@ -1,13 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Cairo } from "next/font/google";
 
-const cairo = Cairo({
-  subsets: ["arabic"],
-  weight: ["400"],
-  variable: "--font-Cairo",
-});
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
