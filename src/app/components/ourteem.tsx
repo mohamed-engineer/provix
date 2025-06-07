@@ -2,7 +2,6 @@
 
 import Reveal from "./reveal";
 
-const teamMembers = [
  const teamMembers = [
   {
     name: "Mohamed Hossam",
@@ -41,6 +40,7 @@ const teamMembers = [
     bio: "Detail-oriented graphic designer with a flair for visual aesthetics and brand identity design.",
   },
 ];
+
 
 
 export default function Team() {
