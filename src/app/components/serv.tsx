@@ -7,11 +7,28 @@ import {
   PaintBrushIcon,
   MegaphoneIcon,
   ServerIcon,
-  CubeIcon, // بدل RobotIcon
+  CubeIcon,
 } from "@heroicons/react/24/solid";
 import { useState } from "react";
 
-const services = [
+// ✅ تعريف نوع الخيار داخل كل خدمة
+type Option = {
+  label: string;
+  type: "select" | "text" | "textarea";
+  name: string;
+  choices?: string[];
+};
+
+// ✅ تعريف نوع الخدمة
+type Service = {
+  id: number;
+  name: string;
+  description: string;
+  icon: (props: React.ComponentProps<'svg'>) => JSX.Element;
+  options: Option[];
+};
+
+const services: Service[] = [
   {
     id: 1,
     name: "تصميم المواقع",
@@ -115,7 +132,7 @@ const services = [
     id: 5,
     name: "البوتات",
     description: "برمجة بوتات ذكية تلبي احتياجاتك.",
-    icon: CubeIcon, // استبدال الأيقونة هنا
+    icon: CubeIcon,
     options: [
       {
         label: "المنصة",
@@ -140,12 +157,13 @@ const services = [
 
 export default function Services() {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedService, setSelectedService] = useState(null);
-  const [formData, setFormData] = useState({});
+  const [selectedService, setSelectedService] = useState<Service | null>(null);
+  const [formData, setFormData] = useState<Record<string, string>>({});
 
-  function openModal(service) {
+  // ✅ تم تعريف نوع service هنا
+  function openModal(service: Service) {
     setSelectedService(service);
-    setFormData({}); // إعادة تعيين البيانات عند الفتح
+    setFormData({});
     setIsOpen(true);
   }
 
@@ -154,12 +172,12 @@ export default function Services() {
     setSelectedService(null);
   }
 
-  function handleChange(e) {
+  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   }
 
-  function handleSubmit(e) {
+  function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!selectedService) return;
 
@@ -175,7 +193,7 @@ export default function Services() {
   }
 
   return (
-    <div className=" bg-black text-[#E6EDF3] py-10 px-4 max-w-5xl w-auto">
+    <div className="bg-black text-[#E6EDF3] py-10 px-4 max-w-5xl w-auto">
       <h1 className="text-3xl font-bold mb-10 text-center">خدماتنا</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {services.map((service) => {
@@ -196,8 +214,7 @@ export default function Services() {
           );
         })}
       </div>
-
-      {/* Modal */}
+ 
       <Dialog
         open={isOpen}
         onClose={closeModal}
@@ -227,7 +244,7 @@ export default function Services() {
                     <option value="" disabled>
                       اختر
                     </option>
-                    {opt.choices.map((choice) => (
+                    {opt.choices?.map((choice) => (
                       <option key={choice} value={choice}>
                         {choice}
                       </option>
