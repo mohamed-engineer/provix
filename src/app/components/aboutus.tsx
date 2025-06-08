@@ -12,7 +12,7 @@ export default function AboutUs() {
 
   <div className="max-w-4xl mx-auto px-6">
     <Reveal>
-      <div className="bg-gray-950/80 backdrop-blur-md border border-gray-700 rounded-3xl p-10 shadow-2xl text-white relative z-10">
+      <div className=" backdrop-blur-md border border-gray-700 rounded-3xl p-10 shadow-2xl text-white relative z-10">
         <h2 className="text-4xl font-extrabold mb-6 relative inline-block after:block after:h-1 after:w-24 after:mt-2 after:mx-auto after:rounded-full after:bg-cyan-400">
           About Us
         </h2>

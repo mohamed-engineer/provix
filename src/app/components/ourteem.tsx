@@ -28,13 +28,19 @@ import TeamMemberCard from "./teamMemberCard";
     bio: "Expert video editor passionate about crafting compelling visual stories that elevate brand communication.",
   },
   {
-    name: "Abdelrahman Mohamed",
+    name: "Abdelrahman Ahmed",
     role: "Front-end Developer",
     photo: "/avatar.webp",
     bio: "Front-end developer focused on creating seamless and responsive web experiences with modern technologies.",
   },
   {
     name: "Omar Nabil",
+    role: "Graphic Designer",
+    photo: "/avatar.webp",
+    bio: "Detail-oriented graphic designer with a flair for visual aesthetics and brand identity design.",
+  },
+    {
+    name: "Tarek Emad",
     role: "Graphic Designer",
     photo: "/avatar.webp",
     bio: "Detail-oriented graphic designer with a flair for visual aesthetics and brand identity design.",
@@ -56,7 +62,7 @@ export default function Team() {
           </h2>
         </Reveal>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
+        <div className="grid  grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
         {teamMembers.map((member, idx) => (
           <TeamMemberCard key={idx} {...member} />
         ))}

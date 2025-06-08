@@ -16,130 +16,134 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const navItems = [
+    { name: "Home", href: "/" },
+    { name: "Services", href: "/services" },
+    { name: "About us", href: "/about" },
+    { name: "Store", href: "/store" },
+    { name: "Contact Us", href: "/contact" },
+  ];
+
   return (
-    <nav
-      className={`fixed w-full  z-50 transition-all duration-300 ${
-        hasScrolled ? "bg-white/10 backdrop-blur-md shadow-lg border-b border-white/10 text-white":"bg-transparent text-white"
-      }`}
-    >
-      <div className="container mx-auto px-4 py-6 flex items-center justify-between">
-        {/* Logo on the left */}
-        <Link href="/">
-          <Image
-            src={"/logo.png"}
-            height={100}
-            width={100}
-            alt="Logo for navbar"
-          />
-        </Link>
+    <>
+      <style jsx global>{`
+        .border-animate {
+          position: relative;
+          display: inline-block;
+          padding: 0.25rem 1rem;
+          cursor: pointer;
+          border-radius: 0.5rem;
+          transition: color 0.3s ease;
+        }
+        .border-animate::before,
+        .border-animate::after {
+          content: "";
+          position: absolute;
+          border: 1.5px solid rgba(255, 255, 255, 0);
+          width: 0;
+          height: 0;
+          transition: all 0.4s ease;
+          pointer-events: none;
+          border-radius: 0.5rem;
+        }
+        .border-animate::before {
+          top: 0;
+          left: 0;
+          border-top-color: rgba(255, 255, 255, 0.7);
+          border-left-color: rgba(255, 255, 255, 0.7);
+        }
+        .border-animate::after {
+          bottom: 0;
+          right: 0;
+          border-bottom-color: rgba(255, 255, 255, 0.7);
+          border-right-color: rgba(255, 255, 255, 0.7);
+        }
+        .border-animate:hover::before,
+        .border-animate:hover::after {
+          width: 100%;
+          height: 100%;
+        }
+        .border-animate:hover {
+          color: #ffffff;
+        }
+      `}</style>
 
-        {/* Right side: Desktop Menu + Login */}
-        <div className="hidden md:flex items-center space-x-6">
-          <ul className="flex items-center space-x-6">
-            <li>
-              <Link
-                href="/"
-                className="relative group flex items-center space-x-1 transition"
-              >
-                <span className="relative text-white">
-                  Home
-                  <span className="absolute left-1/2 bottom-0 w-0 h-[2px] bg-gradient-to-r from-[#1E88E5] to-[#00BCD4] transition-all duration-300 group-hover:w-full group-hover:left-0" />
-                </span>
-              </Link>
-            </li>
+      <nav
+        className={`fixed w-full z-50 transition-all duration-300 ${
+          hasScrolled
+            ? "bg-white/10 backdrop-blur-md shadow-lg border-b border-white/10 text-white"
+            : "bg-transparent text-white"
+        }`}
+      >
+        <div className="container mx-auto px-4 py-6 flex items-center justify-between">
+          {/* Logo */}
+          <Link href="/">
+            <Image
+              src="/logo.png"
+              alt="Logo"
+              width={100}
+              height={100}
+              priority
+            />
+          </Link>
 
-            <li>
-              <Link
-                href="/services"
-                className="relative group flex items-center space-x-1 transition"
-              >
-                <span className="relative text-white">
-                  Services
-                  <span className="absolute left-1/2 bottom-0 w-0 h-[2px] bg-gradient-to-r from-[#1E88E5] to-[#00BCD4] transition-all duration-300 group-hover:w-full group-hover:left-0" />
-                </span>
-              </Link>
-            </li>
+          {/* Desktop Menu */}
+          <div className="hidden md:flex items-center gap-x-6">
+            <ul className="flex items-center gap-x-6">
+              {navItems.map((item) => (
+                <li key={item.name}>
+                  <Link
+                    href={item.href}
+                    className="border-animate relative z-10 text-white transition-colors duration-300"
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
 
-            <li>
-              <Link
-                href="/about"
-                className="relative group flex items-center space-x-1 transition"
-              >
-                <span className="relative text-white">
-                  About us
-                  <span className="absolute left-1/2 bottom-0 w-0 h-[2px] bg-gradient-to-r from-[#1E88E5] to-[#00BCD4] transition-all duration-300 group-hover:w-full group-hover:left-0" />
-                </span>
-              </Link>
-            </li>
-
-            <li>
-              <Link
-                href="/store"
-                className="relative group flex items-center space-x-1 transition"
-              >
-                <span className="relative text-white">
-                  Store
-                  <span className="absolute left-1/2 bottom-0 w-0 h-[2px] bg-gradient-to-r from-[#1E88E5] to-[#00BCD4] transition-all duration-300 group-hover:w-full group-hover:left-0" />
-                </span>
-              </Link>
-            </li>
-
-            <li>
-              <Link
-                href="/contact"
-                className="relative group flex items-center space-x-1 transition"
-              >
-                <span className="relative text-white">
-                  Contact Us
-                  <span className="absolute left-1/2 bottom-0 w-0 h-[2px] bg-gradient-to-r from-[#1E88E5] to-[#00BCD4] transition-all duration-300 group-hover:w-full group-hover:left-0" />
-                </span>
-              </Link>
-            </li>
-          </ul>
-
-          {/* Login Button */}
-          <Link href="/login" className="hidden lg:block">
-            <span
-              className="relative inline-block text-center bg-black border-white border-2 text-white font-semibold rounded-3xl p-2 hover:from-blue-800 hover:to-fuchsia-900 transition duration-200"
+            {/* Login Button */}
+            <Link
+              href="/login"
+              className="hidden lg:inline-block bg-black border-2 border-white text-white text-center font-semibold rounded-3xl px-6 py-2
+                hover:bg-white hover:text-black transition duration-300"
               style={{ width: "100px" }}
             >
               Login
-            </span>
-          </Link>
+            </Link>
+          </div>
+
+          {/* Mobile Toggle Button */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden focus:outline-none text-white"
+            aria-label="Toggle Menu"
+          >
+            {isOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
         </div>
 
-        {/* Mobile Toggle */}
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden focus:outline-none text-white"
-        >
-          {isOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
-      </div>
-
-      {/* Mobile Menu */}
-      {isOpen && (
-        <div className="md:hidden bg-[#0A0E17] px-4 pb-4 space-y-2 text-white">
-          <Link href="/" className="block hover:text-[#1E88E5]">
-            Home
-          </Link>
-          <Link href="/services" className="block hover:text-[#1E88E5]">
-            Services
-          </Link>
-          <Link href="/about" className="block hover:text-[#1E88E5]">
-            About us
-          </Link>
-          <Link href="/store" className="block hover:text-[#1E88E5]">
-            Store
-          </Link>
-          <Link href="/contact" className="block hover:text-[#1E88E5]">
-            Contact Us
-          </Link>
-          <Link href="/login" className="block hover:text-[#1E88E5]">
-            Login
-          </Link>
-        </div>
-      )}
-    </nav>
+        {/* Mobile Menu */}
+        {isOpen && (
+          <div className="md:hidden bg-[#0A0E17]/90 backdrop-blur px-4 pb-4 space-y-2 text-white">
+            {navItems.map((item) => (
+              <Link
+                href={item.href}
+                key={item.name}
+                className="block py-2 px-3 rounded hover:bg-white/10 transition"
+              >
+                {item.name}
+              </Link>
+            ))}
+            <Link
+              href="/login"
+              className="block py-2 px-3 rounded hover:bg-white/10 transition"
+            >
+              Login
+            </Link>
+          </div>
+        )}
+      </nav>
+    </>
   );
 }

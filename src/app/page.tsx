@@ -3,6 +3,7 @@ import Navbar from "./components/navbar";
 import AboutUs from "./components/aboutus";
 import Services from "./components/services";
 import Team from "./components/ourteem";
+import ServicesSection from "./components/serv";
 export default function Home() {
   return (
     <>
@@ -11,6 +12,7 @@ export default function Home() {
     <AboutUs />
     <Services />
     <Team />
+    <ServicesSection />
     </>
   );
 }

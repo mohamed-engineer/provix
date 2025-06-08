@@ -42,7 +42,7 @@ export default function TeamMemberCard({
     <>
     <Reveal>
 
-    <div className="relative group bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-6 shadow-lg cursor-pointer max-w-sm mx-auto">
+    <div className="relative group  bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-6 shadow-lg cursor-pointer max-w-sm mx-auto">
       <img
         src={photo}
         alt={name}
