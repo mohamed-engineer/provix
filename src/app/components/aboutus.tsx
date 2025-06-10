@@ -5,12 +5,12 @@ import { FaRocket } from "react-icons/fa";
 import Reveal from "./reveal";
 export default function AboutUs() {
     const { t } = useTranslation("common");
-    const toggleLanguage = () => {
-      const newLang = i18n.language === "en" ? "ar" : "en";
-      i18n.changeLanguage(newLang);
-      // تغيير اتجاه الصفحة
-      document.documentElement.dir = newLang === "ar" ? "rtl" : "ltr";
-    };
+    // const toggleLanguage = () => {
+    //   const newLang = i18n.language === "en" ? "ar" : "en";
+    //   i18n.changeLanguage(newLang);
+    //   // تغيير اتجاه الصفحة
+    //   document.documentElement.dir = newLang === "ar" ? "rtl" : "ltr";
+    // };
     const AboutUs = t('About us')
     const provixName =   t("Provix Tech");
     const At = t('At')
