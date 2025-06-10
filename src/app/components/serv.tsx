@@ -1,6 +1,7 @@
 "use client";
 import { Dialog } from "@headlessui/react";
 import { motion } from "framer-motion";
+import Reveal from './reveal';
 import {
   GlobeAltIcon,
   PaintBrushIcon,
@@ -195,19 +196,21 @@ export default function Services() {
 
   return (
     <section className='bg-black'>
-
+     <Reveal>
       <h1 className="text-3xl font-bold mb-10 text-center" >Our Services</h1>
+     </Reveal>
     <div className="bg-black text-[#E6EDF3] py-10 px-4 w-auto">
       <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-8">
         {services.map((service) => {
           const Icon = service.icon;
           return (
+            <Reveal key={service}>
             <motion.div
               key={service.id}
               onClick={() => openModal(service)}
               whileHover={{ scale: 1.05 }}
               className="cursor-pointer bg-[#161B22] rounded-lg p-6 flex items-center gap-4 shadow-lg hover:shadow-xl transition-shadow"
-            >
+              >
               <Icon className="h-12 w-12 text-[#58A6FF]" />
               <div>
                 <h2 className="text-xl font-semibold">{service.name}</h2>
@@ -215,6 +218,7 @@ export default function Services() {
                 <p className="text-sm mt-1 text-[#006b96]">Click here to choose the service!!</p>
               </div>
             </motion.div>
+              </Reveal>
           );
         })}
       </div>
