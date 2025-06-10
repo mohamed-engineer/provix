@@ -1,5 +1,5 @@
 "use client";
-
+import Image from "next/image";
 import { FaLinkedin, FaTwitter, FaInstagram } from "react-icons/fa";
 import Reveal from "./reveal";
 const socialLinks = [
@@ -43,9 +43,11 @@ export default function TeamMemberCard({
     <Reveal>
 
     <div className="relative group  bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-6 shadow-lg cursor-pointer max-w-sm mx-auto">
-      <img
+      <Image
         src={photo}
         alt={name}
+        height={500}
+        width={500}
         className="w-32 h-32 rounded-full mx-auto object-cover mb-4 border-4 border-cyan-400"
         />
       <h3 className="text-xl font-semibold text-white text-center">{name}</h3>

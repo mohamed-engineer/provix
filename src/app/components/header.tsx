@@ -1,19 +1,19 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import i18n from "@/lib/i18n"; // المسار حسب مشروعك
+// import i18n from "@/lib/i18n"; // المسار حسب مشروعك
 
 export default function Header() {
   const { t } = useTranslation("common");
 const provixName =   t("Provix Tech");
 const StartNow = t("Start now")
 const JoinNow = t("Join now")
-  const toggleLanguage = () => {
-    const newLang = i18n.language === "en" ? "ar" : "en";
-    i18n.changeLanguage(newLang);
-    // تغيير اتجاه الصفحة
-    document.documentElement.dir = newLang === "ar" ? "rtl" : "ltr";
-  };
+  // const toggleLanguage = () => {
+  //   const newLang = i18n.language === "en" ? "ar" : "en";
+  //   i18n.changeLanguage(newLang);
+  //   // تغيير اتجاه الصفحة
+  //   document.documentElement.dir = newLang === "ar" ? "rtl" : "ltr";
+  // };
 
   const [subtext, setSubtext] = useState("");
   const fullSubtext = t("Make the right choice, and take off. Technology that understands you and scales with your growth.");
