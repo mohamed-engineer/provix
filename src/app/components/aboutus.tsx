@@ -1,6 +1,5 @@
 "use client";
 import { useTranslation } from "react-i18next";
-import i18n from "@/lib/i18n"; // المسار حسب مشروعك
 import { FaRocket } from "react-icons/fa";
 import Reveal from "./reveal";
 export default function AboutUs() {
