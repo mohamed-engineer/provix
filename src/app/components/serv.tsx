@@ -1,5 +1,5 @@
 "use client";
-
+import { ReactElement } from 'react';
 import { Dialog } from "@headlessui/react";
 import { motion } from "framer-motion";
 import {
@@ -24,31 +24,32 @@ type Service = {
   id: number;
   name: string;
   description: string;
-  icon: (props: React.ComponentProps<'svg'>) => JSX.Element;
+  icon: React.FC<React.SVGProps<SVGSVGElement>>; // ← ✅ ده اللي لازم
   options: Option[];
 };
+
 
 const services: Service[] = [
   {
     id: 1,
-    name: "تصميم المواقع",
-    description: "تصميم مواقع احترافية تناسب أعمالك.",
+    name: "Web Design",
+    description: "Professional website design tailored to your business.",
     icon: GlobeAltIcon,
     options: [
       {
-        label: "نوع الموقع",
+        label: "Website Type",
         type: "select",
         name: "siteType",
-        choices: ["موقع تعريفي", "متجر إلكتروني", "مدونة", "بوابة إلكترونية"],
+        choices: ["Landing Page", "E-commerce Store", "Blog", "Web Portal"],
       },
       {
-        label: "لوحة تحكم",
+        label: "Admin Dashboard",
         type: "select",
         name: "dashboard",
-        choices: ["نعم", "لا"],
+        choices: ["Yes", "No"],
       },
       {
-        label: "الألوان أو ملاحظات",
+        label: "Colors or Notes",
         type: "textarea",
         name: "notes",
       },
@@ -56,23 +57,23 @@ const services: Service[] = [
   },
   {
     id: 2,
-    name: "تصميم الجرافيك",
-    description: "تصميم شعارات وبوسترات وبطاقات احترافية.",
+    name: "Graphic Design",
+    description: "Professional design for logos, posters, and business cards.",
     icon: PaintBrushIcon,
     options: [
       {
-        label: "نوع التصميم",
+        label: "Design Type",
         type: "select",
         name: "designType",
-        choices: ["شعار", "بوستر", "بطاقة أعمال", "تصميم سوشيال ميديا"],
+        choices: ["Logo", "Poster", "Business Card", "Social Media Design"],
       },
       {
-        label: "الألوان",
+        label: "Preferred Colors",
         type: "text",
         name: "colors",
       },
       {
-        label: "أسلوب التصميم",
+        label: "Design Style",
         type: "text",
         name: "style",
       },
@@ -80,49 +81,49 @@ const services: Service[] = [
   },
   {
     id: 3,
-    name: "التسويق الرقمي",
-    description: "حملات تسويقية ناجحة على منصات التواصل.",
+    name: "Digital Marketing",
+    description: "Effective marketing campaigns on social media platforms.",
     icon: MegaphoneIcon,
     options: [
       {
-        label: "المنصات",
+        label: "Platforms",
         type: "select",
         name: "platforms",
-        choices: ["فيسبوك", "إنستجرام", "تويتر", "جوجل أدز"],
+        choices: ["Facebook", "Instagram", "Twitter", "Google Ads"],
       },
       {
-        label: "الميزانية",
+        label: "Budget",
         type: "text",
         name: "budget",
       },
       {
-        label: "نوع الحملة",
+        label: "Campaign Type",
         type: "select",
         name: "campaignType",
-        choices: ["زيادة مبيعات", "زيادة زيارات", "بناء وعي بالعلامة"],
+        choices: ["Sales Increase", "Website Traffic", "Brand Awareness"],
       },
     ],
   },
   {
     id: 4,
-    name: "الاستضافة",
-    description: "خدمات استضافة آمنة وسريعة لموقعك.",
+    name: "Hosting",
+    description: "Secure and fast hosting services for your website.",
     icon: ServerIcon,
     options: [
       {
-        label: "نوع الخدمة",
+        label: "Hosting Type",
         type: "select",
         name: "hostingType",
-        choices: ["مشترك", "مخصص", "سحابي"],
+        choices: ["Shared", "Dedicated", "Cloud"],
       },
       {
-        label: "المدة",
+        label: "Duration",
         type: "select",
         name: "duration",
-        choices: ["شهر", "3 أشهر", "6 أشهر", "سنة"],
+        choices: ["1 Month", "3 Months", "6 Months", "1 Year"],
       },
       {
-        label: "احتياجات خاصة",
+        label: "Special Requirements",
         type: "textarea",
         name: "specialNeeds",
       },
@@ -130,30 +131,31 @@ const services: Service[] = [
   },
   {
     id: 5,
-    name: "البوتات",
-    description: "برمجة بوتات ذكية تلبي احتياجاتك.",
+    name: "Bots",
+    description: "Smart bots programmed to meet your needs.",
     icon: CubeIcon,
     options: [
       {
-        label: "المنصة",
+        label: "Platform",
         type: "select",
         name: "platform",
-        choices: ["واتساب", "تيليجرام", "فيسبوك مسنجر", "مواقع ويب"],
+        choices: ["WhatsApp", "Telegram", "Facebook Messenger", "Websites"],
       },
       {
-        label: "نوع البوت",
+        label: "Bot Type",
         type: "select",
         name: "botType",
-        choices: ["خدمة عملاء", "تسويق", "تعليمي", "تفاعلي"],
+        choices: ["Customer Service", "Marketing", "Educational", "Interactive"],
       },
       {
-        label: "تفاصيل إضافية",
+        label: "Additional Details",
         type: "textarea",
         name: "details",
       },
     ],
   },
 ];
+
 
 export default function Services() {
   const [isOpen, setIsOpen] = useState(false);
@@ -193,9 +195,11 @@ export default function Services() {
   }
 
   return (
-    <div className="bg-black text-[#E6EDF3] py-10 px-4 max-w-5xl w-auto">
-      <h1 className="text-3xl font-bold mb-10 text-center">خدماتنا</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <section className='bg-black'>
+
+      <h1 className="text-3xl font-bold mb-10 text-center" >Our Services</h1>
+    <div className="bg-black text-[#E6EDF3] py-10 px-4 w-auto">
+      <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-8">
         {services.map((service) => {
           const Icon = service.icon;
           return (
@@ -209,6 +213,7 @@ export default function Services() {
               <div>
                 <h2 className="text-xl font-semibold">{service.name}</h2>
                 <p className="text-sm mt-1 text-[#8B949E]">{service.description}</p>
+                <p className="text-sm mt-1 text-[#006b96]">Click here to choose the service!!</p>
               </div>
             </motion.div>
           );
@@ -283,5 +288,6 @@ export default function Services() {
         </Dialog.Panel>
       </Dialog>
     </div>
+    </section>
   );
 }
