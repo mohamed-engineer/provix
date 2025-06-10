@@ -107,8 +107,7 @@ export default function Navbar() {
             {navItems.map((item) => (
               <Link
                 href={item.href}
-                key={item.name}
-                className="block py-2 px-3 rounded hover:bg-white/10 transition"
+                className="border-animate py-2 px-3 rounded hover:bg-white/10 transition relative z-10 text-white transition-colors duration-300 px-4 py-2"
               >
                 {item.name}
               </Link>
