@@ -1,7 +1,7 @@
 // components/FaqSection.tsx
 "use client";
 import { useState } from "react";
-
+import Reveal from './reveal'
 const faqs = [
   { question: "ما هي مدة تنفيذ التصميم؟", answer: "عادة بين 3 إلى 7 أيام حسب نوع الطلب." },
   { question: "هل يمكن الدفع عند التسليم؟", answer: "نقبل دفعات مسبقة لضمان الجدية." },
@@ -17,9 +17,14 @@ export default function FaqSection() {
 
   return (
     <section id="faq" className="bg-[#0D1117] text-white py-16 px-4">
+
       <div className="max-w-2xl mx-auto space-y-6">
+      <Reveal>
         <h2 className="text-3xl font-bold text-center">الأسئلة الشائعة</h2>
+      </Reveal>
         {faqs.map((faq, i) => (
+          <Reveal key={i}>
+
           <div key={i} className="border-b border-gray-700">
             <button
               onClick={() => toggle(i)}
@@ -32,6 +37,7 @@ export default function FaqSection() {
               <p className="text-gray-400 py-2">{faq.answer}</p>
             )}
           </div>
+            </Reveal>
         ))}
       </div>
     </section>
