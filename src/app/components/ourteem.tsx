@@ -1,8 +1,9 @@
-"use client";
+'use client';
 
-import Reveal from "./reveal";
-import TeamMemberCard from "./teamMemberCard";
- const teamMembers = [
+import { useTranslation } from 'react-i18next';
+import TeamMemberCard from './teamMemberCard';
+
+const teamMembers = [
   {
     name: "Mohamed Hossam",
     role: "Founder & CEO & Software Manager",
@@ -39,7 +40,7 @@ import TeamMemberCard from "./teamMemberCard";
     photo: "/avatar.webp",
     bio: "Detail-oriented graphic designer with a flair for visual aesthetics and brand identity design.",
   },
-    {
+  {
     name: "Mohamed Emad",
     role: "Graphic Designer",
     photo: "/avatar.webp",
@@ -47,26 +48,22 @@ import TeamMemberCard from "./teamMemberCard";
   },
 ];
 
+export default function OurTeam() {
+  const { t } = useTranslation();
 
-
-export default function Team() {
   return (
-    <section
-      id="team"
-      className="py-24 bg-black text-white"
-    >
-      <div className="max-w-6xl mx-auto px-6 text-center">
-        <Reveal>
-          <h2 className="text-4xl font-extrabold mb-10 relative inline-block after:block after:h-1 after:w-24 after:mt-2 after:mx-auto after:rounded-full after:bg-cyan-300">
-            Meet Our Team
-          </h2>
-        </Reveal>
-
-        <div className="grid  grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
-        {teamMembers.map((member, idx) => (
-          <TeamMemberCard key={idx} {...member} />
+    <section className="py-12 px-4 md:px-8 lg:px-16 bg-black text-white">
+      <h2 className="text-3xl font-bold text-center mb-10">{t('Meet Our Team')}</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        {teamMembers.map((member, index) => (
+          <TeamMemberCard
+            key={index}
+            name={t(member.name)}
+            role={t(member.role)}
+            bio={t(member.bio)}
+            photo={member.photo}
+          />
         ))}
-        </div>
       </div>
     </section>
   );
