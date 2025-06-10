@@ -1,12 +1,17 @@
 "use client";
+
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
 
+import { useTranslation } from "react-i18next";
+import i18n from "@/lib/i18n"; // المسار حسب مشروعك
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
+  const { t } = useTranslation("common");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,57 +22,22 @@ export default function Navbar() {
   }, []);
 
   const navItems = [
-    { name: "Home", href: "/" },
-    { name: "Services", href: "/services" },
-    { name: "About us", href: "/about" },
-    { name: "Store", href: "/store" },
-    { name: "Contact Us", href: "/contact" },
+    { name: t("Home"), href: "/" },
+    { name: t("Services"), href: "#services" },
+    { name: t("About us"), href: "#about" },
+    { name: t("Store"), href: "#store" },
+    { name: t("Contact us"), href: "#contact" },
   ];
+
+  const toggleLanguage = () => {
+    const newLang = i18n.language === "en" ? "ar" : "en";
+    i18n.changeLanguage(newLang);
+    // تغيير اتجاه الصفحة
+    document.documentElement.dir = newLang === "ar" ? "rtl" : "ltr";
+  };
 
   return (
     <>
-      <style jsx global>{`
-        .border-animate {
-          position: relative;
-          display: inline-block;
-          padding: 0.25rem 1rem;
-          cursor: pointer;
-          border-radius: 0.5rem;
-          transition: color 0.3s ease;
-        }
-        .border-animate::before,
-        .border-animate::after {
-          content: "";
-          position: absolute;
-          border: 1.5px solid rgba(255, 255, 255, 0);
-          width: 0;
-          height: 0;
-          transition: all 0.4s ease;
-          pointer-events: none;
-          border-radius: 0.5rem;
-        }
-        .border-animate::before {
-          top: 0;
-          left: 0;
-          border-top-color: rgba(255, 255, 255, 0.7);
-          border-left-color: rgba(255, 255, 255, 0.7);
-        }
-        .border-animate::after {
-          bottom: 0;
-          right: 0;
-          border-bottom-color: rgba(255, 255, 255, 0.7);
-          border-right-color: rgba(255, 255, 255, 0.7);
-        }
-        .border-animate:hover::before,
-        .border-animate:hover::after {
-          width: 100%;
-          height: 100%;
-        }
-        .border-animate:hover {
-          color: #ffffff;
-        }
-      `}</style>
-
       <nav
         className={`fixed w-full z-50 transition-all duration-300 ${
           hasScrolled
@@ -102,14 +72,22 @@ export default function Navbar() {
               ))}
             </ul>
 
-            {/* Login Button */}
+            {/* زر تغيير اللغة */}
+            <button
+              onClick={toggleLanguage}
+              className="text-white border border-white px-3 py-1 rounded-md hover:bg-white hover:text-black transition"
+            >
+              {t("Language")}
+            </button>
+
+            {/* زر تسجيل الدخول */}
             <Link
               href="/login"
               className="hidden lg:inline-block bg-black border-2 border-white text-white text-center font-semibold rounded-3xl px-6 py-2
                 hover:bg-white hover:text-black transition duration-300"
               style={{ width: "100px" }}
             >
-              Login
+              {t("Login")}
             </Link>
           </div>
 
@@ -139,8 +117,16 @@ export default function Navbar() {
               href="/login"
               className="block py-2 px-3 rounded hover:bg-white/10 transition"
             >
-              Login
+              {t("Login")}
             </Link>
+
+            {/* زر تغيير اللغة موبايل */}
+            <button
+              onClick={toggleLanguage}
+              className="w-full text-left py-2 px-3 rounded hover:bg-white/10 transition"
+            >
+              {t("Language")}
+            </button>
           </div>
         )}
       </nav>

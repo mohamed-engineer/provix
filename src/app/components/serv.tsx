@@ -10,6 +10,8 @@ import {
   CubeIcon,
 } from "@heroicons/react/24/solid";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import i18n from "@/lib/i18n"; // المسار حسب مشروعك
 
 // ✅ تعريف نوع الخيار داخل كل خدمة
 type Option = {
@@ -27,29 +29,44 @@ type Service = {
   icon: React.FC<React.SVGProps<SVGSVGElement>>; // ← ✅ ده اللي لازم
   options: Option[];
 };
+ 
+
+
+
+export default function Services() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedService, setSelectedService] = useState<Service | null>(null);
+  const [formData, setFormData] = useState<Record<string, string>>({});
+
+ const { t } = useTranslation("common");
 
 
 const services: Service[] = [
   {
     id: 1,
-    name: "Web Design",
-    description: "Professional website design tailored to your business.",
+    name: t("Web Design"),
+    description: t("Professional website design tailored to your business."),
     icon: GlobeAltIcon,
     options: [
       {
-        label: "Website Type",
+        label: t("Website Type"),
         type: "select",
         name: "siteType",
-        choices: ["Landing Page", "E-commerce Store", "Blog", "Web Portal"],
+        choices: [
+          t("Landing Page"),
+          t("E-commerce Store"),
+          t("Blog"),
+          t("Web Portal"),
+        ],
       },
       {
-        label: "Admin Dashboard",
+        label: t("Admin Dashboard"),
         type: "select",
         name: "dashboard",
-        choices: ["Yes", "No"],
+        choices: [t("Yes"), t("No")],
       },
       {
-        label: "Colors or Notes",
+        label: t("Colors or Notes"),
         type: "textarea",
         name: "notes",
       },
@@ -57,23 +74,28 @@ const services: Service[] = [
   },
   {
     id: 2,
-    name: "Graphic Design",
-    description: "Professional design for logos, posters, and business cards.",
+    name: t("Graphic Design"),
+    description: t("Professional design for logos, posters, and business cards."),
     icon: PaintBrushIcon,
     options: [
       {
-        label: "Design Type",
+        label: t("Design Type"),
         type: "select",
         name: "designType",
-        choices: ["Logo", "Poster", "Business Card", "Social Media Design"],
+        choices: [
+          t("Logo"),
+          t("Poster"),
+          t("Business Card"),
+          t("Social Media Design"),
+        ],
       },
       {
-        label: "Preferred Colors",
+        label: t("Preferred Colors"),
         type: "text",
         name: "colors",
       },
       {
-        label: "Design Style",
+        label: t("Design Style"),
         type: "text",
         name: "style",
       },
@@ -81,49 +103,63 @@ const services: Service[] = [
   },
   {
     id: 3,
-    name: "Digital Marketing",
-    description: "Effective marketing campaigns on social media platforms.",
+    name: t("Digital Marketing"),
+    description: t("Effective marketing campaigns on social media platforms."),
     icon: MegaphoneIcon,
     options: [
       {
-        label: "Platforms",
+        label: t("Platforms"),
         type: "select",
         name: "platforms",
-        choices: ["Facebook", "Instagram", "Twitter", "Google Ads"],
+        choices: [
+          t("Facebook"),
+          t("Instagram"),
+          t("Twitter"),
+          t("Google Ads"),
+        ],
       },
       {
-        label: "Budget",
+        label: t("Budget"),
         type: "text",
         name: "budget",
       },
       {
-        label: "Campaign Type",
+        label: t("Campaign Type"),
         type: "select",
         name: "campaignType",
-        choices: ["Sales Increase", "Website Traffic", "Brand Awareness"],
+        choices: [
+          t("Sales Increase"),
+          t("Website Traffic"),
+          t("Brand Awareness"),
+        ],
       },
     ],
   },
   {
     id: 4,
-    name: "Hosting",
-    description: "Secure and fast hosting services for your website.",
+    name: t("Hosting"),
+    description: t("Secure and fast hosting services for your website."),
     icon: ServerIcon,
     options: [
       {
-        label: "Hosting Type",
+        label: t("Hosting Type"),
         type: "select",
         name: "hostingType",
-        choices: ["Shared", "Dedicated", "Cloud"],
+        choices: [t("Shared"), t("Dedicated"), t("Cloud")],
       },
       {
-        label: "Duration",
+        label: t("Duration"),
         type: "select",
         name: "duration",
-        choices: ["1 Month", "3 Months", "6 Months", "1 Year"],
+        choices: [
+          t("1 Month"),
+          t("3 Months"),
+          t("6 Months"),
+          t("1 Year"),
+        ],
       },
       {
-        label: "Special Requirements",
+        label: t("Special Requirements"),
         type: "textarea",
         name: "specialNeeds",
       },
@@ -131,36 +167,40 @@ const services: Service[] = [
   },
   {
     id: 5,
-    name: "Bots",
-    description: "Smart bots programmed to meet your needs.",
+    name: t("Bots"),
+    description: t("Smart bots programmed to meet your needs."),
     icon: CubeIcon,
     options: [
       {
-        label: "Platform",
+        label: t("Platform"),
         type: "select",
         name: "platform",
-        choices: ["WhatsApp", "Telegram", "Facebook Messenger", "Websites"],
+        choices: [
+          t("WhatsApp"),
+          t("Telegram"),
+          t("Facebook Messenger"),
+          t("Websites"),
+        ],
       },
       {
-        label: "Bot Type",
+        label: t("Bot Type"),
         type: "select",
         name: "botType",
-        choices: ["Customer Service", "Marketing", "Educational", "Interactive"],
+        choices: [
+          t("Customer Service"),
+          t("Marketing"),
+          t("Educational"),
+          t("Interactive"),
+        ],
       },
       {
-        label: "Additional Details",
+        label: t("Additional Details"),
         type: "textarea",
         name: "details",
       },
     ],
   },
 ];
-
-
-export default function Services() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [selectedService, setSelectedService] = useState<Service | null>(null);
-  const [formData, setFormData] = useState<Record<string, string>>({});
 
   // ✅ تم تعريف نوع service هنا
   function openModal(service: Service) {
@@ -192,6 +232,14 @@ export default function Services() {
 
     const whatsappUrl = `https://wa.me/201556157843?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+
+
+      const toggleLanguage = () => {
+        const newLang = i18n.language === "en" ? "ar" : "en";
+        i18n.changeLanguage(newLang);
+        // تغيير اتجاه الصفحة
+        document.documentElement.dir = newLang === "ar" ? "rtl" : "ltr";
+      };
   }
 
   return (

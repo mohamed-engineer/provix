@@ -1,11 +1,22 @@
 "use client";
-
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import i18n from "@/lib/i18n"; // المسار حسب مشروعك
 
 export default function Header() {
+  const { t } = useTranslation("common");
+const provixName =   t("Provix Tech");
+const StartNow = t("Start now")
+const JoinNow = t("Join now")
+  const toggleLanguage = () => {
+    const newLang = i18n.language === "en" ? "ar" : "en";
+    i18n.changeLanguage(newLang);
+    // تغيير اتجاه الصفحة
+    document.documentElement.dir = newLang === "ar" ? "rtl" : "ltr";
+  };
+
   const [subtext, setSubtext] = useState("");
-  const fullSubtext =
-    "Make the right choice, and take off. Technology that understands you and scales with your growth.";
+  const fullSubtext = t("Make the right choice, and take off. Technology that understands you and scales with your growth.");
   const [subIndex, setSubIndex] = useState(0);
   const [isClient, setIsClient] = useState(false);
 
@@ -42,9 +53,8 @@ export default function Header() {
       )}
 
       <div className="relative z-20 p-6">
-        <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold mb-6 bg-clip-text animate-fade-in"
->
-  Provix Tech
+        <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold mb-6 bg-clip-text animate-fade-in">
+  {provixName}
 </h1>
 
 
@@ -61,14 +71,14 @@ export default function Header() {
           href="#about"
           className="inline-block  bg-black border-white border-2 text-white font-semibold rounded-3xl p-2 transition duration-300 text-white px-8 py-3 rounded-full text-lg shadow-lg hover:scale-105"
           >
-        Start now
+        {StartNow}
         </a>
 
         <a
           href="#about"
           className="inline-block bg-black border-white border-2 text-white font-semibold rounded-3xl p-2 transition duration-300 text-white px-8 py-3 rounded-full text-lg shadow-lg hover:scale-105"
           >
-        Join now
+        {JoinNow}
         </a>
             </div>
       </div>

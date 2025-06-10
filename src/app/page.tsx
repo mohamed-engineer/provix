@@ -7,9 +7,13 @@ import ServicesSection from "./components/serv";
 import Footer from "./components/footer";
 import FaqSection from "./components/faq";
 import ContactSection from "./components/contactus";
+import I18nProvider from './components/I18nProvider';
+
+
 export default function Home() {
   return (
     <>
+  <I18nProvider>
     <Navbar />
     <Header />
     <AboutUs />
@@ -19,6 +23,7 @@ export default function Home() {
     <FaqSection />
     <ContactSection />
     <Footer />
+  </I18nProvider>
     </>
   );
 }

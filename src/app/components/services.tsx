@@ -2,29 +2,29 @@
 
 import Reveal from "./reveal";
 import { FaCode, FaPaintBrush, FaChartLine } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
-const services = [
-  {
-    icon: <FaCode className="text-5xl mb-4" />,
-    title: "Web Development",
-    description:
-      "We build fast, modern, and responsive websites tailored to your business needs.",
-  },
-  {
-    icon: <FaPaintBrush className="text-5xl mb-4" />,
-    title: "Branding & Design",
-    description:
-      "We craft unique brand identities, logos, and stunning UI/UX for digital products.",
-  },
-  {
-    icon: <FaChartLine className="text-5xl mb-4" />,
-    title: "Digital Strategy",
-    description:
-      "We help startups grow through smart digital strategies and online presence planning.",
-  },
-];
 
 export default function Services() {
+  const { t } = useTranslation("common");
+  const services = [
+    {
+      icon: <FaCode className="text-5xl mb-4" />,
+      title: t("Web Development"),
+      description: t("We build fast, modern, and responsive websites tailored to your business needs."),
+    },
+    {
+      icon: <FaPaintBrush className="text-5xl mb-4" />,
+      title: t("Branding & Design"),
+      description: t("We craft unique brand identities, logos, and stunning UI/UX for digital products."),
+    },
+    {
+      icon: <FaChartLine className="text-5xl mb-4" />,
+      title: t("Digital Strategy"),
+      description: t("We help startups grow through smart digital strategies and online presence planning."),
+    },
+  ];
+  
   return (
     <section
       id="services"
@@ -33,7 +33,7 @@ export default function Services() {
       <div className="max-w-6xl mx-auto px-6">
         <Reveal>
           <h2 className="text-4xl font-extrabold mb-12 text-center relative inline-block after:block after:h-1 after:w-24 after:mt-2 after:mx-auto after:rounded-full after:bg-white/30">
-            Our Services
+            {t('Our Services')}
           </h2>
         </Reveal>
 

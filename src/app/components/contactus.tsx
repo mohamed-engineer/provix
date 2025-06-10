@@ -4,7 +4,7 @@ import { useState } from "react";
 import { FaPhoneAlt } from "react-icons/fa";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { CiMapPin } from "react-icons/ci";
-
+const phoneNumber = '+201556157843';
 export default function ContactSection() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
 
@@ -50,22 +50,31 @@ export default function ContactSection() {
           </button>
         </form>
         <p className="text-sm text-gray-400 mt-6">
-          أو راسلنا مباشرة على
+           أو راسلنا مباشرة على
           <a
             href="https://wa.me/201556157843"
             target="_blank"
             rel="noopener noreferrer"
             className="text-[#58A6FF] underline ml-1"
           >
-            واتساب
+            {'  واتساب'}
           </a>
         </p>
-        <div className="text-sm text-gray-400 space-y-1">
-         <p><MdOutlineMailOutline />  info@youragency.com</p>
-         <p> <FaPhoneAlt /> +20 123 456 7890</p>
-        <p><CiMapPin /> Alexandria , Egypt</p>
+        <div className="text-sm flex items-center flex-col text-gray-400 space-y-2">
+          <p className="flex items-center gap-2">
+            <MdOutlineMailOutline className="text-lg" />
+            info@youragency.com
+          </p>
+          <p className="flex items-center gap-2">
+            <FaPhoneAlt className="text-lg" />
+            {phoneNumber}
+          </p>
+          <p className="flex items-center gap-2">
+            <CiMapPin className="text-lg" />
+            Alexandria, Egypt
+          </p>
         </div>
-      </div>
+</div>
     </section>
   );
 }

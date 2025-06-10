@@ -40,7 +40,7 @@ import TeamMemberCard from "./teamMemberCard";
     bio: "Detail-oriented graphic designer with a flair for visual aesthetics and brand identity design.",
   },
     {
-    name: "Tarek Emad",
+    name: "Mohamed Emad",
     role: "Graphic Designer",
     photo: "/avatar.webp",
     bio: "Detail-oriented graphic designer with a flair for visual aesthetics and brand identity design.",
