@@ -32,7 +32,7 @@ const JoinNow = t("Join now")
       }, 40); // سرعة الكتابة
       return () => clearTimeout(timeout);
     }
-  }, [fullSubtext]);
+  }, [subtext]);
 
   return (
     <header className="relative min-h-screen flex items-center justify-center text-white text-center overflow-hidden">
