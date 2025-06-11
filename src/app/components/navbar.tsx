@@ -104,14 +104,16 @@ export default function Navbar() {
         {/* Mobile Menu */}
         {isOpen && (
           <div className="md:hidden bg-[#0A0E17]/90 backdrop-blur px-4 pb-4 space-y-2 text-white">
-            {navItems.map((item) => (
-              <Link
-                href={item.href}
-                className="border-animate py-2 px-3 rounded hover:bg-white/10 transition relative z-10 text-white transition-colors duration-300 px-4 py-2"
-              >
-                {item.name}
-              </Link>
-            ))}
+          {navItems.map((item) => (
+            <Link
+              href={item.href}
+              key={item.name} // ✅ أضف المفتاح هنا
+              className="block py-2 px-3 rounded hover:bg-white/10 transition"
+            >
+              {item.name}
+            </Link>
+          ))}
+
             <Link
               href="/login"
               className="block py-2 px-3 rounded hover:bg-white/10 transition"
